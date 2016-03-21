@@ -1,0 +1,6 @@
+services:
+    jorgehernan.odm_relationship:
+        class: JorgeHernan\Bundle\OdmRelationshipViewBundle\DataCollector\OdmRelationshipDataCollector
+        arguments: ['@doctrine_mongodb.odm.document_manager']
+        tags:
+            - { name: data_collector, template: JorgeHernanOdmRelationshipViewBundle:DataCollector:odm_relationship.html.twig, id: jorgehernan.odm_relationship }
