@@ -15,7 +15,7 @@ class OdmRelationshipDataCollector extends DataCollector
     protected $documentManager;
 
     /**
-     * 
+     *
      * @param $dm
      */
     public function __construct(DocumentManager $dm)
@@ -33,12 +33,28 @@ class OdmRelationshipDataCollector extends DataCollector
             ->getMetadataDriverImpl()
             ->getAllClassNames();
 
-        $documents = array();
-
+        $i = 0;
         foreach ($documentClassNames AS $documentClassName) {
             $cm = $this->documentManager->getClassMetadata($documentClassName);
-
+            $associations = $cm->associationMappings;
+            if(count($associations) > 0){
+                foreach($associations as $association){
+                    $this->data['documents'][$i] = array(
+                        'document' => $cm->getCollection(),
+                        'mappings' => array(
+                            'fieldName' => $association['fieldName'],
+                            'type' => $association['type'],
+                            'targetDocument' => $association['targetDocument']
+                        )
+                    );
+                    $i++;
+                }
+            }
         }
+    }
+
+    public function getDocuments(){
+        return $this->data['documents'];
     }
 
     /**

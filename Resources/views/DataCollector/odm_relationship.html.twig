@@ -23,4 +23,28 @@
 
 {% block panel %}
     <h2>Jorge Hernán</h2>
+    <table>
+        <tr>
+            <th>Document</th>
+            <th>Field Name</th>
+            <th>Type</th>
+            <th>Target Document</th>
+        </tr>
+        {% for document in collector.documents %}
+            <tr>
+                <td>
+                    {{ document.document }}
+                </td>
+                <td>
+                    {{ document.mappings.fieldName }}
+                </td>
+                <td>
+                    {{ document.mappings.type }}
+                </td>
+                <td>
+                    {{ document.mappings.targetDocument }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
