@@ -1,10 +1,5 @@
 {% extends 'WebProfilerBundle:Profiler:layout.html.twig' %}
 
-{% block toolbar %}
-
-
-{% endblock %}
-
 {% block head %}
     {{ parent() }}
 {% endblock %}
@@ -22,8 +17,11 @@
     <h2>Documents Relationships</h2>
 
     {% set type_list = { 0: 'All', 1: 'One', 2: 'Many', 3: 'Embed' } %}
+    {% set embedded_list = { 0: 'All', 1: 'True', 2: 'False' } %}
+
     {% set document_input = request.query.get('document', '') %}
     {% set type_input = request.query.get('type', 0) %}
+    {% set embedded_input = request.query.get('embedded', '') %}
 
     <table>
         <tr>
@@ -40,6 +38,13 @@
                             <option value="{{ value }}"{{ value == type_input ? ' selected' : '' }}>{{ text }}</option>
                         {% endfor %}
                     </select>
+
+                    <label for="embedded">Embedded</label>
+                    <select id="embedded" name="embedded">
+                        {% for value, text in embedded_list %}
+                            <option value="{{ value }}"{{ value == embedded_input ? ' selected' : '' }}>{{ text }}</option>
+                        {% endfor %}
+                    </select>
                     <input type="submit" value="Submit">
                 </form>
             </td>
@@ -51,9 +56,14 @@
             <th>Document</th>
             <th>Field Name</th>
             <th>Type</th>
+            <th>Embedded</th>
             <th>Target Document</th>
         </tr>
-        {% for document in collector.documents if (document_input == '' or document.document == document_input) and (type_input == 0 or type_list[type_input]|lower == document.mappings.type) %}
+        {% for document in collector.documents
+            if (document_input == '' or document.document == document_input)
+            and (type_input == 0 or type_list[type_input]|lower == document.mappings.type)
+            and (embedded_input == 0 or embedded_list[embedded_input]|lower == document.mappings.embedded)
+        %}
             <tr>
                 <td>
                     {{ document.document }}
@@ -63,6 +73,9 @@
                 </td>
                 <td>
                     {{ document.mappings.type }}
+                </td>
+                <td>
+                    {{ document.mappings.embedded }}
                 </td>
                 <td>
                     {{ document.mappings.targetDocument }}

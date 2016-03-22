@@ -44,6 +44,7 @@ class OdmRelationshipDataCollector extends DataCollector
                         'mappings' => array(
                             'fieldName' => $association['fieldName'],
                             'type' => $association['type'],
+                            'embedded' => (isset($association['embedded'])) ? 'true' : 'false',
                             'targetDocument' => $association['targetDocument']
                         )
                     );
