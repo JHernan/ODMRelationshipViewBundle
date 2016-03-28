@@ -22,6 +22,7 @@
     {% set document_input = request.query.get('document', '') %}
     {% set type_input = request.query.get('type', 0) %}
     {% set embedded_input = request.query.get('embedded', '') %}
+    {% set target_input = request.query.get('target', '') %}
 
     <table>
         <tr>
@@ -29,6 +30,7 @@
             <td>
                 <form id="document-form" action="" method="get" style="display: inline">
                     <input type="hidden" name="panel" value="{{ collector.name }}">
+
                     <label for="document">Document</label>
                     <input type="text" name="document" value="{{ document_input }}" />
 
@@ -45,6 +47,10 @@
                             <option value="{{ value }}"{{ value == embedded_input ? ' selected' : '' }}>{{ text }}</option>
                         {% endfor %}
                     </select>
+
+                    <label for="document">Target Document</label>
+                    <input type="text" name="target" value="{{ target_input }}" />
+
                     <input type="submit" value="Submit">
                 </form>
             </td>
@@ -63,6 +69,7 @@
             if (document_input == '' or document_input|lower in document.document|lower)
             and (type_input == 0 or type_list[type_input]|lower == document.mappings.type)
             and (embedded_input == 0 or embedded_list[embedded_input]|lower == document.mappings.embedded)
+            and (target_input == '' or target_input|lower in document.mappings.targetDocument|lower)
         %}
             <tr>
                 <td>
