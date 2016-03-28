@@ -60,7 +60,7 @@
             <th>Target Document</th>
         </tr>
         {% for document in collector.documents
-            if (document_input == '' or document.document == document_input)
+            if (document_input == '' or document_input|lower in document.document|lower)
             and (type_input == 0 or type_list[type_input]|lower == document.mappings.type)
             and (embedded_input == 0 or embedded_list[embedded_input]|lower == document.mappings.embedded)
         %}

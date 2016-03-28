@@ -40,7 +40,7 @@ class OdmRelationshipDataCollector extends DataCollector
             if(count($associations) > 0){
                 foreach($associations as $association){
                     $this->data['documents'][$i] = array(
-                        'document' => $cm->getCollection(),
+                        'document' => $cm->getName(),
                         'mappings' => array(
                             'fieldName' => $association['fieldName'],
                             'type' => $association['type'],
