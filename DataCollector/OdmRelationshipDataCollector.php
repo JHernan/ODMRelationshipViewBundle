@@ -22,6 +22,7 @@ class OdmRelationshipDataCollector extends DataCollector
     {
         $this->documentManager = $dm;
     }
+
     /**
      * @param Request   $request   The request object
      * @param Response  $response  The response object
