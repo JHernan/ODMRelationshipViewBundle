@@ -3,6 +3,9 @@
 ODMRelationshipViewBundle lets you show all database documents relationships other documents of your Symfony application.
 This bundle let you to know the relationships of documents each others. That will be very helpful with large number of documents.
 
+<img src="https://raw.githubusercontent.com/JHernan/ODMRelationshipViewBundle/tree/master/Resources/doc/images/menu.png" alt="Profiler Menu" align="left" />
+<img src="https://raw.githubusercontent.com/JHernan/ODMRelationshipViewBundle/tree/master/Resources/doc/images/profiler.png" alt="List Documents" align="right" />
+
 **Features**
 
 * Show all relationships of each document:
@@ -21,8 +24,23 @@ Installation
 
 ### Step 1: Download the Bundle
 
-```bash
-$ composer require jorgehernan/odmrelationshipview-bundle
+```json
+// composer.json:
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/JHernan/ODMRelationshipViewBundle.git"
+        }
+    ],
+
+    // ...
+
+    "require": {
+        // ...
+        "jorgehernan/odmrelationshipview-bundle": "dev-master"
+    }
+},
 ```
 
 ### Step 2: Enable the Bundle
