@@ -34,10 +34,10 @@ Installation
         }
     ],
 
-    // ...
+    /* ... */
 
     "require": {
-        // ...
+        /* ... */
         "jorgehernan/odmrelationshipview-bundle": "dev-master"
     }
 },
