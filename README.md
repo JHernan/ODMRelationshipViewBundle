@@ -24,21 +24,8 @@ Installation
 
 ### Step 1: Download the Bundle
 
-```json
-// composer.json:
-{
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/JHernan/ODMRelationshipViewBundle.git"
-        }
-    ],
-
-
-    "require": {
-        "jorgehernan/odmrelationshipview-bundle": "dev-master"
-    }
-},
+```bash
+composer require jorgehernan/odmrelationshipview-bundle
 ```
 
 ### Step 2: Enable the Bundle
